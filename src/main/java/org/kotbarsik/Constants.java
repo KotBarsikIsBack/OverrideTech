@@ -1,6 +1,7 @@
 package org.kotbarsik;
 
 public class Constants {
+    public static final int CURRENT_YEAR = 2022;
     public static final double[] MOEX_RATE = {
             417.42,
             673.72,

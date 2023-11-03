@@ -8,23 +8,31 @@ public class Main {
 
 
         try {
-            checkDate();
+         int date = checkDate();
+
+           int startYear = Constants.MOEX_RATE.length - (Constants.CURRENT_YEAR - date);
+
+            for (int i = startYear; i <= Constants.MOEX_RATE.length; i++ ){
+                System.out.println(date++);
+
+            }
+
         } catch (InvalidInputException e){
             System.out.println(e.getMessage());
         }
 
-
     }
 
 
-    public static void checkDate() throws InvalidInputException{
+    public static int checkDate() throws InvalidInputException{
 
         Scanner scan = new Scanner(System.in);
-        int number = scan.nextInt();
+        int date = scan.nextInt();
 
-        if (number < 2002 || number > 2022)
+        if (date < 2002 || date > 2022)
             throw new InvalidInputException("Have no information");
 
+        return date;
     }
 
 

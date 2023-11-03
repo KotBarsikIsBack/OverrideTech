@@ -1,6 +1,9 @@
 package org.kotbarsik;
 
 import java.util.Scanner;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 
 public class Main {
 
@@ -10,13 +13,16 @@ public class Main {
         try {
          int date = checkDate();
 
-           int startYear = Constants.MOEX_RATE.length - (Constants.CURRENT_YEAR - date);
-           double startMoney = Constants.EXPENSES * 25 * 12; // 4%  12 month
-           double startMoex = startMoney / Constants.MOEX_RATE[startYear];
+           int startYear = Constants.MOEX_RATE.length - 1 - (Constants.CURRENT_YEAR - date);
+           int startMoney = Constants.EXPENSES * 25 * 12 ; // 4%  12 month
+           BigDecimal startMoex = new BigDecimal(startMoney / Constants.MOEX_RATE[startYear]);
 
-            System.out.println(startMoex);
+           startMoex = startMoex.setScale(1, RoundingMode.HALF_UP);
 
-            for (int i = startYear; i <= Constants.MOEX_RATE.length; i++ ){
+           System.out.println(startMoney);
+           System.out.println(startMoex);
+
+            for (int i = startYear; i < Constants.MOEX_RATE.length; i++ ){
                 System.out.println(date++);
 
             }

@@ -11,6 +11,10 @@ public class Main {
          int date = checkDate();
 
            int startYear = Constants.MOEX_RATE.length - (Constants.CURRENT_YEAR - date);
+           double startMoney = Constants.EXPENSES * 25;
+           double startMoex = startMoney / Constants.MOEX_RATE[startYear];
+
+            System.out.println(startMoex);
 
             for (int i = startYear; i <= Constants.MOEX_RATE.length; i++ ){
                 System.out.println(date++);

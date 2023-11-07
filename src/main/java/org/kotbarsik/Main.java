@@ -20,14 +20,20 @@ public class Main {
              //System.out.println(startExpenses);
          }
 
-         int startMoney = (startExpenses * 25 * 12) + (startExpenses * 12);
+         int startMoney = (startExpenses * 25 * 12) + (startExpenses * 3 * 12); // начальный капитал на вклад + текущий год
          System.out.println("Начальная сумма вкладов: " + startMoney);
+         startMoney -= startExpenses;
+         System.out.println("Начальная сумма вкладов c вычетом денег на жизнь в текущий год: " + startMoney);
+         double startMoex = startMoney / Constants.MOEX_RATE[startYear];
+         System.out.println("Начальное кол-во акций мосбиржи: " + startMoex);
 
 //           int startMoney = Constants.EXPENSES * 25 * 12 ; // 4%  12 month
 //           BigDecimal startMoex = new BigDecimal(startMoney / Constants.MOEX_RATE[startYear]);
 //           startMoex = startMoex.setScale(1, RoundingMode.HALF_UP);
 //           System.out.println(startMoney);
 //           System.out.println(startMoex);
+
+
          for (int i = startYear; i < Constants.MOEX_RATE.length; i++ ){
              System.out.println(date++);
             }
@@ -53,6 +59,10 @@ public class Main {
         return date;
     }
 
+    public static double calculatePercent(int startYeatr, double moex, int expenses) {
+        double percent = 0;
 
+        return percent;
+    }
 
 }

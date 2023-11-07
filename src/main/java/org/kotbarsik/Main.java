@@ -12,20 +12,28 @@ public class Main {
 
         try {
          int date = checkDate();
+         int startYear = Constants.MOEX_RATE.length - 1 - (Constants.CURRENT_YEAR - date);
+         int startExpenses = Constants.EXPENSES;
 
-           int startYear = Constants.MOEX_RATE.length - 1 - (Constants.CURRENT_YEAR - date);
-           int startMoney = Constants.EXPENSES * 25 * 12 ; // 4%  12 month
-           BigDecimal startMoex = new BigDecimal(startMoney / Constants.MOEX_RATE[startYear]);
+         for (int i = Constants.INFLATION_RATE.length - 1; i >= startYear; i--){
+             startExpenses = (int)Math.round(startExpenses / (1 + Constants.INFLATION_RATE[i]/100));
+             //System.out.println(startExpenses);
+         }
 
-           startMoex = startMoex.setScale(1, RoundingMode.HALF_UP);
+         int startMoney = (startExpenses * 25 * 12) + (startExpenses * 12);
+         System.out.println("Начальная сумма вкладов: " + startMoney);
 
-           System.out.println(startMoney);
-           System.out.println(startMoex);
-
-            for (int i = startYear; i < Constants.MOEX_RATE.length; i++ ){
-                System.out.println(date++);
-
+//           int startMoney = Constants.EXPENSES * 25 * 12 ; // 4%  12 month
+//           BigDecimal startMoex = new BigDecimal(startMoney / Constants.MOEX_RATE[startYear]);
+//           startMoex = startMoex.setScale(1, RoundingMode.HALF_UP);
+//           System.out.println(startMoney);
+//           System.out.println(startMoex);
+         for (int i = startYear; i < Constants.MOEX_RATE.length; i++ ){
+             System.out.println(date++);
             }
+
+
+
 
         } catch (InvalidInputException e){
             System.out.println(e.getMessage());

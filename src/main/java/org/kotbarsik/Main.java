@@ -34,7 +34,7 @@ public class Main {
          double moex = startMoex * 1.15; // доходы за год
          System.out.println("Доходы на текущий год: " + moex);
 
-         double expenses = (int)(startExpenses * Constants.INFLATION_RATE[startYear]);
+         double expenses = (startExpenses * Constants.INFLATION_RATE[startYear]);
          System.out.println("Траты на следующий год: " + expenses + ". В месяц: " + expenses/12);
 
 

@@ -34,7 +34,7 @@ public class Main {
          double moex = startMoex * 1.15; // доходы за год
          System.out.println("Доходы на текущий год: " + moex);
 
-         int expenses = (int)(startExpenses * Constants.INFLATION_RATE[startYear]);
+         double expenses = (int)(startExpenses * Constants.INFLATION_RATE[startYear]);
          System.out.println("Траты на следующий год: " + expenses + ". В месяц: " + expenses/12);
 
 
@@ -48,6 +48,8 @@ public class Main {
          for (int i = startYear + 1; i < Constants.MOEX_RATE.length; i++ ){
              System.out.println(++date);
              calculatePercent( moex, expenses, i);
+             expenses = expenses * Constants.INFLATION_RATE[i];
+             System.out.println("Траты не следующий год: " + expenses + ". В месяц: " + expenses/12);
             }
 
 
@@ -71,7 +73,7 @@ public class Main {
         return date;
     }
 
-    public static double calculatePercent(double moex, int expenses, int index) {
+    public static void calculatePercent(double moex, double expenses, int index) {
         //double percent = 0;
 
         int money = (int)(moex * Constants.MOEX_RATE[index]);
@@ -80,9 +82,9 @@ public class Main {
         System.out.println("Доступные траты: " + percent + ". В месяц: " + percent / 12);
         money -= expenses;
         System.out.println("Остаток денег на вклад: " + money);
-        double newExpenses = expenses * Constants.INFLATION_RATE[index];
-        System.out.println("Траты не следующий год: " + newExpenses + ". В месяц: " + newExpenses/12);
-        return newExpenses;
+
+//        double newExpenses = expenses * Constants.INFLATION_RATE[index];
+//        System.out.println("Траты не следующий год: " + newExpenses + ". В месяц: " + newExpenses/12);
 
        // return Math.round(percent * 2) / 2.0;
     }
